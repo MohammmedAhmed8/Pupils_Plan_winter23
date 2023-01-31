@@ -1,0 +1,236 @@
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+	public static void main(String[] args) throws Exception {
+
+		// (1) frequency array
+
+		// given an array a of integers of size 1<=n<=1e5 and 1<=a[i]<=1e5,
+		// print the number of occurences of all numbers from 1 to 1e5 in the
+		// array
+		freqArray1();
+
+		// given a string of size n consisting only of lowercase latin
+		// characters,
+		// print the number of occurences of all characters from 'a' to 'z'
+		freqArray2();
+
+		// (2) for each loop
+		forEach();
+
+		// (3)Arrays.sort
+		arraysSort();
+
+		// (4)Pair and sorting an array of Pairs
+		PairMethod();
+
+		// one last note
+		// On comparing two "Longs" (the wrapper or non-primitive)
+		// avoid using "==" and use instead:
+		Long x = 3L;
+		Long y = 3L;
+		boolean condition = Long.compare(x, y) == 0;
+
+	}
+
+	public static void freqArray1() throws Exception {
+		int n = sc.nextInt();
+		int[] arr = new int[n];
+		for (int i = 0; i < n; i++) {
+			arr[i] = sc.nextInt();
+		}
+		int maxV = (int) 1e5 + 1;
+		int[] freq = new int[maxV];
+		for (int i = 0; i < n; i++) {
+			freq[arr[i]]++;
+		}
+		for (int i = 1; i < maxV; i++) {
+			pw.print(freq[i] + " ");
+		}
+		pw.println();
+	}
+
+	public static void freqArray2() throws Exception {
+		int n = sc.nextInt();
+		char[] arr = sc.next().toCharArray();
+		int[] freq = new int[26];
+		for (int i = 0; i < n; i++) {
+			freq[arr[i] - 'a']++;
+		}
+		for (int i = 0; i < 26; i++) {
+			pw.print(freq[i] + " ");
+		}
+		pw.println();
+	}
+
+	public static void forEach() {
+		int n = 5;
+		int[] arr = new int[n];
+
+		// the following two loops are equivalent
+
+		for (int i = 0; i < n; i++) {
+			// do sth with arr[i]
+		}
+
+		for (int x : arr) {
+			// do sth with x
+		}
+
+		// if it were an array of Person(s)
+		// then the loop will be
+		// for(Person p : arr){
+		// do sth with p
+		// }
+	}
+
+	public static void arraysSort() {
+
+		// we could use the predefined method Arrays.sort() to sort a given
+		// array
+		// Note: It sorts in a non-decreasing order
+		int[] a = new int[5];
+		Arrays.sort(a); // O(n^2) at worst case
+
+		Integer[] b = new Integer[5];
+		Arrays.sort(b); // O(n*log(n)) at worst case
+
+		// same goes for long and Long
+
+		// And if the type of elements in the array was any object (not a
+		// primitive), it will run
+		// in O(n*log(n)) at worst case
+
+		// to reverse the order
+		Arrays.sort(b, Collections.reverseOrder());
+	}
+
+	public static void PairMethod() {
+
+		Pair[] arr = new Pair[4];
+		arr[0] = new Pair(1, 2);
+		arr[1] = new Pair(1, 3);
+		arr[2] = new Pair(2, 3);
+		arr[3] = new Pair(2, 1);
+
+		Arrays.sort(arr); // uses the comparable criterion
+		Arrays.sort(arr, Collections.reverseOrder()); // same but reverses order
+
+		// different criteria of sorting
+
+		// on x then y in a non-decreasing order
+		Arrays.sort(arr, (a, b) -> (a.x == b.x) ? a.y - b.y : a.x - b.x);
+		// on y then x in a non-decreasing order
+		Arrays.sort(arr, (a, b) -> (a.y == b.y) ? a.x - b.x : a.y - b.y);
+		// on the sum of x and y in a non-decreasing order
+		Arrays.sort(arr, (a, b) -> (a.x + a.y) - (b.x + b.y));
+	}
+
+	static class Pair implements Comparable<Pair> {
+		int x;
+		int y;
+
+		public Pair(int x, int y) {
+			this.x = x;
+			this.y = y;
+		}
+
+		public String toString() {
+			return "{" + this.x + ", " + this.y + "}";
+		}
+
+		@Override
+		public int compareTo(Pair other) {
+			// TODO Auto-generated method stub
+
+			// sorts on x then y (in a non-decreasing order)
+			return (this.x == other.x) ? this.y - other.y : this.x - other.x;
+		}
+	}
+
+	static Scanner sc;
+	static PrintWriter pw;
+
+	static class Scanner {
+		StringTokenizer st;
+		BufferedReader br;
+
+		public Scanner(InputStream s) {
+			br = new BufferedReader(new InputStreamReader(s));
+		}
+
+		public Scanner(String r) throws Exception {
+			br = new BufferedReader(new FileReader(new File(r)));
+		}
+
+		public String next() throws IOException {
+			while (st == null || !st.hasMoreTokens())
+				st = new StringTokenizer(br.readLine());
+			return st.nextToken();
+		}
+
+		public int nextInt() throws IOException {
+			return Integer.parseInt(next());
+		}
+
+		public long nextLong() throws IOException {
+			return Long.parseLong(next());
+		}
+
+		public String nextLine() throws IOException {
+			return br.readLine();
+		}
+
+		public double nextDouble() throws IOException {
+			String x = next();
+			StringBuilder sb = new StringBuilder("0");
+			double res = 0, f = 1;
+			boolean dec = false, neg = false;
+			int start = 0;
+			if (x.charAt(0) == '-') {
+				neg = true;
+				start++;
+			}
+			for (int i = start; i < x.length(); i++)
+				if (x.charAt(i) == '.') {
+					res = Long.parseLong(sb.toString());
+					sb = new StringBuilder("0");
+					dec = true;
+				} else {
+					sb.append(x.charAt(i));
+					if (dec)
+						f *= 10;
+				}
+			res += Long.parseLong(sb.toString()) / f;
+			return res * (neg ? -1 : 1);
+		}
+
+		public Long[] nextLongArray(int n) throws IOException {
+			Long[] a = new Long[n];
+			for (int i = 0; i < n; i++)
+				a[i] = nextLong();
+			return a;
+		}
+
+		public int[] nextIntArray(int n) throws IOException {
+			int[] a = new int[n];
+			for (int i = 0; i < n; i++)
+				a[i] = nextInt();
+			return a;
+		}
+
+		public Integer[] nextIntegerArray(int n) throws IOException {
+			Integer[] a = new Integer[n];
+			for (int i = 0; i < n; i++)
+				a[i] = nextInt();
+			return a;
+		}
+
+		public boolean ready() throws IOException {
+			return br.ready();
+		}
+	}
+
+}
