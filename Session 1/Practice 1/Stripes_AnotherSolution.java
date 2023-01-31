@@ -1,6 +1,6 @@
 import java.util.*;
 import java.io.*;
-public class Stripes2{
+public class Stripes_AnotherSolution{
     public static void main(String[] args) throws IOException {
         Scanner sc = new Scanner(System.in);
         PrintWriter pw = new PrintWriter(System.out);
