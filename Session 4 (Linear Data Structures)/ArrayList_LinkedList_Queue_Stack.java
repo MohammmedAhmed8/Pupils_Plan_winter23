@@ -31,7 +31,7 @@ public class ArrayList_LinkedList_Queue_Stack {
 
         Collections.sort(arrayList); // Just like Arrays.sort() with complexity O(N*logN)
 
-        for (Integer integer : arrayList) { // this will print "  2 3 10 " as we sorted the arrayList in the previous step
+        for (Integer integer : arrayList) { // this will print "  2 3 4 10 " as we sorted the arrayList in the previous step
             // To get an object at a certain index we use .get(i) O(1)
             System.out.print(integer + " ");
         }
