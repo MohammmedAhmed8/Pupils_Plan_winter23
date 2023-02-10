@@ -48,7 +48,6 @@ public class Linear_Data_Structures{
 
         // Given an array of integers and a number x,
         // can determine if there is a subset of the array that has a sum equals to x?
-        // if yes print every possible subset that has sum equals to x.
 
         // A subset of an array can be formed by choosing some (may be 0, 1, 2, ... or equal to size of the array) elements out of all the possible array elements,
         // in the same order in which they appear in the original array.
