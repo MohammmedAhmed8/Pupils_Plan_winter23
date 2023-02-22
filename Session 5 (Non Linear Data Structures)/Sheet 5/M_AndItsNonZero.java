@@ -5,19 +5,23 @@ public class M_AndItsNonZero {
     public static void main(String[] args) throws IOException {
         Scanner sc = new Scanner(System.in);
         PrintWriter pw = new PrintWriter(System.out);
-        int[][] pre = new int[20][(int)2e5+5];
+        int maxN = 200005;
+        int[][] pre = new int[20][maxN];
+        for(int i=0; i<20 ;i++){
+            for(int j=1; j<maxN ;j++){
+                if((j & (1<<i)) != 0)
+                    pre[i][j]++;
+            }
+        }
         for(int i=0; i<20 ;i++)
-            for(int j=1; j<pre[0].length ;j++)
-                if((j & (1<<i)) == 0) pre[i][j] = 1;
-        for(int i=0; i<20 ;i++)
-            for(int j=1; j<pre[0].length ;j++)
+            for(int j=1; j<maxN ;j++)
                 pre[i][j] += pre[i][j-1];
         int tt = sc.nextInt();
         while(tt-->0){
             int l = sc.nextInt() , r = sc.nextInt();
-            int ans = r - l + 1;
+            int ans = Integer.MAX_VALUE;
             for(int i=0; i<20 ;i++)
-                ans = Math.min(ans , pre[i][r] - pre[i][l-1]);
+                ans = Math.min(ans , (r - l + 1) - (pre[i][r] - pre[i][l-1]));
             pw.println(ans);
         }
         pw.flush();
