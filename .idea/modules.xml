@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Pupils_Plan_winter23.iml" filepath="$PROJECT_DIR$/Pupils_Plan_winter23.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Session 1/Session 1.iml" filepath="$PROJECT_DIR$/Session 1/Session 1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Session 2/Session 2.iml" filepath="$PROJECT_DIR$/Session 2/Session 2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Session 5 (Non Linear Data Structures)/Session 5 (Non Linear Data Structures).iml" filepath="$PROJECT_DIR$/Session 5 (Non Linear Data Structures)/Session 5 (Non Linear Data Structures).iml" />
+    </modules>
+  </component>
+</project>
