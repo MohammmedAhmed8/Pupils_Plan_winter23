@@ -22,8 +22,6 @@ public class G_JumpingOnWalls {
             if(y+k >= n) return true;
             if(c[1-x][y+k] != 'X' && !vis[1-x][y+k])
                 q.add(new int[]{1-x,y+k,water+1});
-            if(y-k >= 0 && c[1-x][y-k] != 'X' && !vis[1-x][y-k] && water+1 <= y-k)
-                q.add(new int[]{1-x,y-k,water+1});
         }
         return false;
     }
