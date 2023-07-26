@@ -31,7 +31,6 @@ public class Timer_Trick {
             int u = sc.nextInt()-1;
             int v = sc.nextInt()-1;
             graph[u].add(v);
-            graph[v].add(u);
         }
         t_in = new int[n];
         t_out = new int[n];
